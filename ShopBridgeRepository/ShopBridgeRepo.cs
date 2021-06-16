@@ -25,7 +25,7 @@ namespace ShopBridgeRepository
         {
             try
             {
-                var Inventory = await _shopBridgeContext.Inventories.Include(x => x.InventoryTypeNavigation).Where(x => x.ID == inventoryId).Select(x => new InventoryClientModel
+                var Inventory = await _shopBridgeContext.Inventories.Include(x => x.InventoryTypeNavigation).Where(x => !x.IsDeleted && x.ID == inventoryId).Select(x => new InventoryClientModel
                 {
                     ID = x.ID,
                     InventoryName = x.InventoryName,
